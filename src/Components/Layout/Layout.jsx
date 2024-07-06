@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Home from './Home';
-import Tab1 from './Tab1';
-import Tab2 from './Tab2';
+import Home from '../Home';
+import Tab1 from '../Tab1';
+import Tab2 from '../Tab2';
 import './Layout.css'
 
 const NavBar = () => {

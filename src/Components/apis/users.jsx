@@ -25,6 +25,7 @@ async function createUser(payload) {
     // name,
     // email,
     // age,
+    // employment,
     // maritalStatus
     // });
     const { name, email, age, employment, maritalStatus } = payload
@@ -50,6 +51,7 @@ async function editUser(payload) {
     // name,
     // email,
     // age,
+    // employment,
     // maritalStatus
     // });
     const { userId, name, email, age, employment, maritalStatus } = payload

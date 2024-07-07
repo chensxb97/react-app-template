@@ -41,6 +41,6 @@
 .page-content {
     display: 'flex';
     text-align: start;
-    margin-left: 50px;
+    margin: 0px 50px 50px;
     width: calc(100% - 100px);
 }

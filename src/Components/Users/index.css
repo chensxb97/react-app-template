@@ -1,0 +1,17 @@
+.create-button {
+    text-align: right;
+    margin: 10px 0px
+}
+
+.users-table .ant-table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.users-table .ant-table-tbody>tr:last-child>td:first-child {
+    border-bottom-left-radius: 12px;
+}
+
+.users-table .ant-table-tbody>tr:last-child>td:last-child {
+    border-bottom-right-radius: 12px;
+}

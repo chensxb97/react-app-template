@@ -4,7 +4,7 @@ const Documentation = () => {
     return (
         <div>
             <h1>Documentation</h1>
-            <p>Welcome to this page.</p>
+            <p>You can view our docs here.</p>
         </div>
     );
 };

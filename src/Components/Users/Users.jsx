@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react"
-import { getUsers, getUser, createUser, editUser, deleteUser } from "../apis/users";
+import { getUsers, deleteUser } from "../apis/users";
 import CreateUser from "./CreateUser";
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
 import "./index.css"
 
-
 const columns = [
+    {
+        title: 'ID',
+        dataIndex: 'id',
+        key: 'id'
+    },
     {
         title: 'Name',
         dataIndex: 'name',
@@ -35,7 +39,19 @@ const columns = [
         title: 'Actions',
         dataIndex: 'action',
         key: 'action',
-    },
+        render: (text, record) => (
+            <div className="actions">
+                <CreateUser editMode={true} record={record} />
+                <Button className="delete-button" onClick={() => {
+                    deleteUser(record.id);
+                    window.location.reload();
+                }}>
+                    Delete
+                </Button>
+            </div >
+        ),
+        width: 10
+    }
 ];
 
 const Users = () => {

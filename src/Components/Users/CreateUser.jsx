@@ -1,23 +1,37 @@
-import { useState, useEffect } from "react"
-import { createUser } from "../apis/users";
+import { useState } from "react"
+import { createUser, editUser } from "../apis/users";
 import { Button, Modal, Form, Input, Select } from 'antd'
 import "./index.css"
 
 const { Option } = Select
 
-const CreateUser = () => {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [age, setAge] = useState(null)
-    const [employmentStatus, setEmploymentStatus] = useState("Unemployed")
-    const [maritalStatus, setMaritalStatus] = useState("Single")
-    const [loading, setLoading] = useState(false);
+const CreateUser = ({ editMode, record }) => {
+    const [userId] = useState(editMode ? record.id : "")
+    const [name, setName] = useState(editMode ? record.name : "")
+    const [email, setEmail] = useState(editMode ? record.email : "")
+    const [age, setAge] = useState(editMode ? record.age : null)
+    const [employmentStatus, setEmploymentStatus] = useState(editMode ? record.employmentStatus : "")
+    const [maritalStatus, setMaritalStatus] = useState(editMode ? record.maritalStatus : "")
     const [isModalOpen, setIsModalOpen] = useState(false);
     const showModal = () => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
+    const handleOk = (e) => {
+        e.preventDefault()
+        let payload = {
+            name,
+            email,
+            age,
+            employmentStatus,
+            maritalStatus
+        }
+        if (editMode) {
+            payload = { userId, ...payload }
+            editUser(payload)
+        }
+        else createUser(payload)
+        window.location.reload()
         setIsModalOpen(false);
     };
 
@@ -25,42 +39,46 @@ const CreateUser = () => {
         setIsModalOpen(false);
     };
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = (e) => {
+        console.log('Finished');
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
-    const employmentOptions = [{
-        value: "Unemployed",
-        key: "unemployed",
-    },
-    {
-        value: "Employed",
-        key: "Employed",
-    }
+    const employmentOptions = [
+        {
+            value: "Unemployed",
+            key: "unemployed",
+        },
+        {
+            value: "Employed",
+            key: "Employed",
+        }
     ]
 
-    const maritalOptions = [{
-        value: "Single",
-        key: "Single",
-    },
-    {
-        value: "Married",
-        key: "Married",
-    },
-    {
-        value: "Divorced",
-        key: "Divorced",
-    }
+    const maritalOptions = [
+        {
+            value: "Single",
+            key: "Single",
+        },
+        {
+            value: "Married",
+            key: "Married",
+        },
+        {
+            value: "Divorced",
+            key: "Divorced",
+        }
     ]
+
+    const [form] = Form.useForm();
 
     return (
         <>
             <div className="create-button">
-                <Button type="primary" onClick={() => showModal()}>Create New User</Button>
+                <Button className={editMode ? "edit-button" : ""} type={editMode ? '' : 'primary'} onClick={() => showModal()}>{editMode ? `Edit` : `Create New User`}</Button>
             </div>
             <Modal
                 title="User Submission Form"
@@ -71,6 +89,7 @@ const CreateUser = () => {
                 onCancel={handleCancel}
             >
                 <Form
+                    form={form}
                     name="basic"
                     labelCol={{
                         span: 6,
@@ -83,11 +102,15 @@ const CreateUser = () => {
                         textAlign: 'center'
                     }}
                     initialValues={{
-                        remember: true,
+                        name: editMode ? record.name : '',
+                        email: editMode ? record.email : '',
+                        age: editMode ? record.age : null,
+                        employmentStatus: editMode ? record.employmentStatus : '',
+                        maritalStatus: editMode ? record.maritalStatus : ''
                     }}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
-                    autoComplete="off"
+                    autoComplete="on"
                 >
                     <Form.Item
                         label="Name"
@@ -99,7 +122,7 @@ const CreateUser = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input onChange={(e) => setName(e.target.value)} />
                     </Form.Item>
                     <Form.Item
                         label="Email"
@@ -111,7 +134,7 @@ const CreateUser = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input onChange={(e) => setEmail(e.target.value)} />
                     </Form.Item>
                     <Form.Item
                         label="Age"
@@ -123,11 +146,11 @@ const CreateUser = () => {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input onChange={(e) => setAge(e.target.value)} />
                     </Form.Item>
                     <Form.Item
-                        label="Employment"
-                        name="employment"
+                        label="EmploymentStatus"
+                        name="employmentStatus"
                         rules={[
                             {
                                 required: true,
@@ -135,15 +158,17 @@ const CreateUser = () => {
                             },
                         ]}
                     >
-                        <Select>
+                        <Select
+                            onChange={(e) => setEmploymentStatus(e)}
+                        >
                             {employmentOptions.map((employmentOption, index) =>
                                 <Option value={employmentOption.value} />
                             )}
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        label="Marital"
-                        name="marital"
+                        label="MaritalStatus"
+                        name="maritalStatus"
                         rules={[
                             {
                                 required: true,
@@ -151,7 +176,9 @@ const CreateUser = () => {
                             },
                         ]}
                     >
-                        <Select>
+                        <Select
+                            onChange={(e) => setMaritalStatus(e)}
+                        >
                             {maritalOptions.map((maritalOption, index) =>
                                 <Option value={maritalOption.value} />
                             )}
@@ -159,7 +186,7 @@ const CreateUser = () => {
                     </Form.Item>
 
                 </Form>
-            </Modal>
+            </Modal >
         </>
     )
 }

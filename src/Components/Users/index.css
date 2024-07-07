@@ -3,6 +3,24 @@
     margin: 10px 0px
 }
 
+.actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-button {
+    margin: 0px 10px 0px;
+    background-color: light;
+    color: white
+}
+
+.delete-button {
+    margin: 0px 10px 0px;
+    background-color: lightcoral;
+    color: white
+}
+
 .users-table .ant-table {
     border-radius: 12px;
     overflow: hidden;

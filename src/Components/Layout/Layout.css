@@ -4,7 +4,7 @@
 }
 
 .navBar {
-    width: 15%;
+    width: 12%;
     min-width: 150px;
     background-color: lightslategrey;
     overflow-Y: auto;
@@ -38,9 +38,9 @@
     text-decoration: underline
 }
 
-.body {
+.page-content {
+    display: 'flex';
     text-align: start;
     margin-left: 50px;
     width: calc(100% - 100px);
-    display: 'flex';
 }

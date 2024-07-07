@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from '../Home';
-import Tab1 from '../Tab1';
-import Tab2 from '../Tab2';
+import Documentation from '../Documentation';
+import Users from '../Users';
 import './Layout.css'
 
 const NavBar = () => {
@@ -15,13 +15,13 @@ const NavBar = () => {
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link className="navLink" to="/tab1">
-                        Tab 1
+                    <Link className="navLink" to="/doc">
+                        Docs
                     </Link>
                 </li>
                 <li className="navItem">
-                    <Link className="navLink" to="/tab2">
-                        Tab 2
+                    <Link className="navLink" to="/users">
+                        Users
                     </Link>
                 </li>
             </ul>
@@ -31,11 +31,11 @@ const NavBar = () => {
 
 const PageContent = () => {
     return (
-        <div className="body">
+        <div className="page-content">
             <Routes>
                 <Route path="/" exact element={<Home />} />
-                <Route path="/tab1" element={<Tab1 />} />
-                <Route path="/tab2" element={<Tab2 />} />
+                <Route path="/doc" element={<Documentation />} />
+                <Route path="/users" element={<Users />} />
             </Routes>
         </div>
     )

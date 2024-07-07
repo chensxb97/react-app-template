@@ -77,8 +77,8 @@ const CreateUser = ({ editMode, record }) => {
 
     return (
         <>
-            <div className="create-button">
-                <Button className={editMode ? "edit-button" : ""} type={editMode ? '' : 'primary'} onClick={() => showModal()}>{editMode ? `Edit` : `Create New User`}</Button>
+            <div className="right-button">
+                <Button className={editMode ? "edit-button" : "create-button"} type={editMode ? '' : 'primary'} onClick={() => showModal()}>{editMode ? `Edit` : `Create New User`}</Button>
             </div>
             <Modal
                 title="User Submission Form"

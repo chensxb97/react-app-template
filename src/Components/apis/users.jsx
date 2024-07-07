@@ -25,10 +25,10 @@ async function createUser(payload) {
     // name,
     // email,
     // age,
-    // employment,
+    // employmentStatus,
     // maritalStatus
     // });
-    const { name, email, age, employment, maritalStatus } = payload
+    const { name, email, age, employmentStatus, maritalStatus } = payload
     await fetch('http://127.0.0.1:8090/api/collections/testUsers/records', {
         method: 'POST',
         headers: {
@@ -38,7 +38,7 @@ async function createUser(payload) {
             name,
             email,
             age,
-            employment,
+            employmentStatus,
             maritalStatus
         }),
     });
@@ -51,10 +51,10 @@ async function editUser(payload) {
     // name,
     // email,
     // age,
-    // employment,
+    // employmentStatus,
     // maritalStatus
     // });
-    const { userId, name, email, age, employment, maritalStatus } = payload
+    const { userId, name, email, age, employmentStatus, maritalStatus } = payload
     await fetch(`http://127.0.0.1:8090/api/collections/testUsers/records/${userId}`, {
         method: 'PATCH',
         headers: {
@@ -64,7 +64,7 @@ async function editUser(payload) {
             name,
             email,
             age,
-            employment,
+            employmentStatus,
             maritalStatus
         }),
     })

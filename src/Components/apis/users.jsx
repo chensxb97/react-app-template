@@ -1,35 +1,20 @@
-// import PocketBase from 'pocketbase';
 async function getUsers() {
-    // const db = new PocketBase('http://127.0.0.1:8090');
-    // const result = await db.records.getList('testUsers');
-    const res = await fetch('http://127.0.0.1:8090/api/collections/testUsers/records?page=1&perPage=30', { cache: 'no-store' });
-    const data = await res.json();
-    return data?.items
+    const res = await fetch('http://localhost:3001/api/users/get')
+    const data = await res.json()
+    return data
 }
 
 async function getUser(userId) {
-    // const db = new PocketBase('http://127.0.0.1:8090');
-    // await db.records.getOne('testUsers', {
-    //   id: userId
-    // });
     const res = await fetch(
-        `http://127.0.0.1:8090/api/collections/testUsers/records/${userId}`, { cache: 'no-store' }
-    );
-    const data = await res.json();
-    return data;
+        `http://localhost:3001/api/users/get/${userId}`
+    )
+    const data = await res.json()
+    return data
 }
 
 async function createUser(payload) {
-    // const db = new PocketBase('http://127.0.0.1:8090');
-    // await db.records.create('notes', {
-    // name,
-    // email,
-    // age,
-    // employmentStatus,
-    // maritalStatus
-    // });
     const { name, email, age, employmentStatus, maritalStatus } = payload
-    await fetch('http://127.0.0.1:8090/api/collections/testUsers/records', {
+    await fetch('http://localhost:3001/api/users/create', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -41,21 +26,12 @@ async function createUser(payload) {
             employmentStatus,
             maritalStatus
         }),
-    });
+    })
 }
 
 async function editUser(payload) {
-    // const db = new PocketBase('http://127.0.0.1:8090');
-    // await db.records.update('testUsers', {
-    // id:userId,
-    // name,
-    // email,
-    // age,
-    // employmentStatus,
-    // maritalStatus
-    // });
     const { userId, name, email, age, employmentStatus, maritalStatus } = payload
-    await fetch(`http://127.0.0.1:8090/api/collections/testUsers/records/${userId}`, {
+    await fetch(`http://localhost:3001/api/users/edit/${userId}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',
@@ -71,11 +47,7 @@ async function editUser(payload) {
 }
 
 async function deleteUser(userId) {
-    // const db = new PocketBase('http://127.0.0.1:8090');
-    // await db.records.delete('testUsers', {
-    //   id: userId
-    // });
-    await fetch(`http://127.0.0.1:8090/api/collections/testUsers/records/${userId}`, {
+    await fetch(`http://localhost:3001/api/users/delete/${userId}`, {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',

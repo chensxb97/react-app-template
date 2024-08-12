@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { getUsers, deleteUser } from "../apis/users";
+import { getUsers, createUser, deleteUser } from "../apis/users";
 import CreateUser from "./CreateUser";
 import { Table, Button } from 'antd'
 import "./index.css"
@@ -42,6 +42,26 @@ const columns = [
         render: (text, record) => (
             <div className="actions">
                 <CreateUser editMode={true} record={record} />
+                <Button className="clone-button" onClick={() => {
+                    const {
+                        name,
+                        email,
+                        age,
+                        employmentStatus,
+                        maritalStatus
+                    } = record
+                    let payload = {
+                        name,
+                        email,
+                        age,
+                        employmentStatus,
+                        maritalStatus
+                    }
+                    createUser(payload)
+                    window.location.reload();
+                }}>
+                    Clone
+                </Button>
                 <Button className="delete-button" onClick={() => {
                     deleteUser(record.id);
                     window.location.reload();

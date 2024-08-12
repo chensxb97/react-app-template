@@ -92,13 +92,13 @@ const CreateUser = ({ editMode, record }) => {
                     form={form}
                     name="basic"
                     labelCol={{
-                        span: 6,
+                        span: 8,
                     }}
                     wrapperCol={{
-                        span: 12,
+                        span: 10,
                     }}
                     style={{
-                        padding: '20px',
+                        padding: '10px',
                         textAlign: 'center'
                     }}
                     initialValues={{
@@ -149,7 +149,7 @@ const CreateUser = ({ editMode, record }) => {
                         <Input onChange={(e) => setAge(e.target.value)} />
                     </Form.Item>
                     <Form.Item
-                        label="EmploymentStatus"
+                        label="Employment Status"
                         name="employmentStatus"
                         rules={[
                             {
@@ -167,7 +167,7 @@ const CreateUser = ({ editMode, record }) => {
                         </Select>
                     </Form.Item>
                     <Form.Item
-                        label="MaritalStatus"
+                        label="Marital Status"
                         name="maritalStatus"
                         rules={[
                             {

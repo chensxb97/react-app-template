@@ -16,6 +16,13 @@
 
 .edit-button {
     margin: 0px 5px 0px;
+    background-color: lightslategrey;
+    color: white;
+    font-weight: large;
+}
+
+.clone-button {
+    margin: 0px 5px 0px;
     background-color: lightseagreen;
     color: white;
     font-weight: large;

@@ -1,6 +1,6 @@
 # React App Template with Vertical Side Bar
 
-## Summary of App
+## Summary
 - A react app that manages user information.
 - React 18, bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - Vertical Navigation Side Bar
